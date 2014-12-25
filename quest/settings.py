@@ -32,6 +32,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
+    'django.contrib.comments',
+    'django.contrib.contenttypes',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django_extensions',
     'daterange_filter',
     'tracking',
@@ -40,6 +45,7 @@ INSTALLED_APPS = (
     'social_auth',
     'django_js_reverse',
     'gunicorn',
+    'django_markdown',
     'quest'
 )
 
@@ -183,8 +189,8 @@ LOGGING = {
     }
 }
 
-
-
+MARKDOWN_EDITOR_SKIN = 'simple'
+SITE_ID = 1
 
 # try to load local_settings.py if it exists
 try:

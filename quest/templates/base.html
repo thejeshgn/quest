@@ -22,13 +22,18 @@
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#">Validator</a></li>
-                    <li><a href="#">Ping</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ping <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url 'pingdetails' %}">Details</a></li>
+                      </ul>
+                    </li>
                     <li><a href="#">Documents</a></li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Schema<b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="#">Details</a></li>
-                        <li><a href="/schema/v1.1/">V1.1</a></li>
+                        <li><a href="{% url 'schemadetails' %}">Details</a></li>
+                        <li><a href="{% url 'schemav1.1' %}">V1.1</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">

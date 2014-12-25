@@ -32,3 +32,4 @@ requests-futures
 dj_database_url
 ssh
 psycopg2
+django_markdown

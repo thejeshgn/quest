@@ -22,6 +22,11 @@ HEADER_FORM_URLENCODED = {'content-type':'application/x-www-form-urlencoded'}
 def home(request):
     return render_to_response('home.html',{'request':request}, context_instance = RequestContext(request))
 
+def pingHelp(request):
+    return render_to_response('markdown.html',{'request':request}, context_instance = RequestContext(request))
+
+
+
 def ping(request):
     catalog_url = request.GET.get('catalog', '')
     if catalog_url == "":
