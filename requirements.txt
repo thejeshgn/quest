@@ -31,3 +31,4 @@ django-js-reverse
 requests-futures
 dj_database_url
 ssh
+psycopg2
