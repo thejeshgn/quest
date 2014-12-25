@@ -1,0 +1,9 @@
+*.pyc
+production_settings.py
+static/*
+static_local/*
+*.log
+celerybeat-schedule
+db.sqlite3
+db_spatial.*
+cache/*
