@@ -3,10 +3,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import *
 from django.contrib import admin
-from django_markdown import flatpages
 
 admin.autodiscover()
-flatpages.register()
 
 urlpatterns = patterns('',
     url('^$',home, name='home'),
