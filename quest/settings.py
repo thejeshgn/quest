@@ -190,4 +190,4 @@ LOGGING = {
 try:
   from local_settings import *
 except Exception as e:
-    from local_settings import *
+    from prod_settings import *
