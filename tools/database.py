@@ -6,12 +6,12 @@ from fabric.api import local, settings
 def needsdatabase(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        local("python manage.py syncdb --settings=dev")
+        local("python manage.py syncdb --settings=settings")
         return f(*args, **kwargs)
     return wrap
 
 def remote_syncdb():
-    local("heroku run python manage.py syncdb --settings=prod")
+    local("heroku run python manage.py syncdb --settings=settings")
 
 def what_is_my_database_url():
     local("heroku config | grep POSTGRESQL")
@@ -19,10 +19,10 @@ def what_is_my_database_url():
 def remote_migrate(app_name):
     if os.path.exists(os.path.join("./apps", app_name, "migrations")):
         with settings(warn_only=True):
-            r = local("heroku run python manage.py migrate apps.%s --settings=prod" % (app_name), capture=True)
+            r = local("heroku run python manage.py migrate apps.%s --settings=settings" % (app_name), capture=True)
             if r.find("django.db.utils.DatabaseError") != -1:
                 print "Normal migration failed. Running a fake migration..."
-                local("heroku run python manage.py migrate apps.%s --settings=prod --fake" % (app_name))
+                local("heroku run python manage.py migrate apps.%s --settings=settings --fake" % (app_name))
 
 def local_migrate(app_name):
     #TODO: figure out if there are actual models within the app
@@ -31,16 +31,16 @@ def local_migrate(app_name):
 
     if not os.path.exists(os.path.join("./apps", app_name, "migrations")):
         with settings(warn_only=True):
-            r = local("python manage.py convert_to_south apps.%s --settings=dev" % app_name, capture=True)
+            r = local("python manage.py convert_to_south apps.%s --settings=settings" % app_name, capture=True)
             if r.return_code != 0:
                 return
     else:
         #app has been converted and ready to roll
         
         with settings(warn_only=True):
-            r = local("python manage.py schemamigration apps.%s --auto --settings=dev" % app_name)
+            r = local("python manage.py schemamigration apps.%s --auto --settings=settings" % app_name)
 
             if r.return_code != 0:
                 print "Scema migration return code != 0 -> nothing to migrate"
             else:
-                local("python manage.py migrate apps.%s --settings=dev" % (app_name))
+                local("python manage.py migrate apps.%s --settings=settings" % (app_name))

@@ -39,8 +39,8 @@ def deploy():
             local_migrate(app)
             
         if is_git_clean():
-            print "Pushing code on Heroku"
-            local("git push heroku master")
+            print "You have un committed code"
+            #local("git push heroku master")
         else:
             print "Committing migrations..."
             local("git add .")

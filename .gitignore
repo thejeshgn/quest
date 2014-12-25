@@ -7,3 +7,4 @@ celerybeat-schedule
 db.sqlite3
 db_spatial.*
 cache/*
+local_settings.py
