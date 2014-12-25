@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-
-{% block title %}{{ flatpage.title }}{% endblock %}
+ {% load django_markdown %}
+{% block title %}Quest | {{ flatpage.title }}{% endblock %}
 
 {% block content %}
-{{ flatpage.content }}
+<h1>{{ flatpage.title }}</h1>
+{{flatpage.content|markdown}}
+
 {% endblock %}
