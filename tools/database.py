@@ -17,7 +17,7 @@ def what_is_my_database_url():
     local("heroku config | grep POSTGRESQL")
 
 def remote_migrate(app_name):
-    if os.path.exists(os.path.join("./apps", app_name, "migrations")):
+    if os.path.exists(os.path.join(app_name, "migrations")):
         with settings(warn_only=True):
             r = local("heroku run python manage.py migrate apps.%s --settings=quest.settings" % (app_name), capture=True)
             if r.find("django.db.utils.DatabaseError") != -1:
