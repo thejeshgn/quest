@@ -39,12 +39,12 @@ def deploy():
             local_migrate(app)
             
         if is_git_clean():
-            print "You have un committed code"
-            #local("git push heroku master")
+            print "Pushing code on Heroku"
+            local("git push heroku master")
         else:
             print "Committing migrations..."
-            local("git add .")
-            local("git commit -a -m '[DHB] data migrations'")
+            #local("git add .")
+            #local("git commit -a -m '[DHB] data migrations'")
 
 
         print "Sync remote database"
