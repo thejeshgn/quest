@@ -1,5 +1,5 @@
 BeautifulSoup
-Django
+Django=1.6.1
 Markdown
 MySQL-python
 South
