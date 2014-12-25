@@ -1,1 +1,1 @@
-web: gunicorn quest.wsgi --settings=dev  --debug --log-level debug
+web: gunicorn quest.wsgi --settings=settings  --debug --log-level debug
