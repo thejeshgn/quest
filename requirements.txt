@@ -1,5 +1,5 @@
 BeautifulSoup
-Django<1.7
+Django
 Markdown
 MySQL-python
 South
@@ -10,7 +10,6 @@ django-extensions
 django-crispy-forms
 django-picklefield
 django-tracking2
-django-tastypie
 django-bootstrap3
 django-mobile
 gunicorn
@@ -23,14 +22,12 @@ six
 sqlparse
 uWSGI
 wsgiref
-celery[redis]
-#mailsnake
-boto
+redis
 django-daterange-filter
 django-dashing
 django-social-auth
 requests-toolbelt
-pandas
 django-js-reverse
-pyExcelerator
 requests-futures
+dj_database_url
+ssh

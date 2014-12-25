@@ -16,13 +16,6 @@ PROJECT_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, os.pardir))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '..','..',"app"))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '..','..',"lib"))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dpc)c$h^0+&q&m=tn&%ey0)-wa+c&)odp5bv*7x9u4df4ef#h_'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
@@ -46,6 +39,7 @@ INSTALLED_APPS = (
     'south',
     'social_auth',
     'django_js_reverse',
+    'gunicorn',
     'quest'
 )
 
@@ -148,26 +142,45 @@ BOOTSTRAP3 = {
 
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': [],
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
+}
 
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-# # NOTE: Customize/Extend GoogleOAuth2Backend when roles needed from ldap
-# AUTHENTICATION_BACKENDS = ('social_auth.backends.google.GoogleOAuth2Backend', 'customauth.restauthbackend.RestAuthBackEnd',)
-
-# SOCIAL_AUTH_ENABLED_BACKENDS = ('google',)
-# SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
-# SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-# GOOGLE_OAUTH2_CLIENT_ID =''
-# GOOGLE_OAUTH2_CLIENT_SECRET = ''
-# GOOGLE_WHITE_LISTED_DOMAINS = ['quest.datameet.org']
-# SOCIAL_AUTH_USER_MODEL = 'auth.User'
-
-
-try:
-    from prod_settings import *
-except ImportError:
-    #If production settings are present don't import local settings
-    try:
-        from dev_settings import *
-    except ImportError:
-        pass
 

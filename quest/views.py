@@ -56,4 +56,4 @@ def ping(request):
     return HttpResponse('All OK')
 
 def schema(request, version):
-    return HttpResponse('All OK'+str(version))
+    return HttpResponse('All OK. Version='+str(version))
